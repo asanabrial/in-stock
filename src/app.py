@@ -3,8 +3,8 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from src.email import Email
-from src.constants import NVIDIA_API_STORE, NVIDIA_HEADERS, EMAIL_TO, EMAIL_FROM, EMAIL_SUBJECT, EMAIL_BODY, EMAIL_PASSWORD
-
+from src.constants import NVIDIA_API_STORE, NVIDIA_HEADERS, EMAIL_TO, \
+    EMAIL_FROM, EMAIL_SUBJECT, EMAIL_BODY, EMAIL_PASSWORD
 
 class NvidiaStoreChecker:
     def run():
@@ -23,8 +23,8 @@ class NvidiaStoreChecker:
             # Create the email message
             for item in data.get("listMap", []):
                 if item.get("product_url"):
-                    body += f"SKU: {item.get('fe_sku')
-                                    }, URL: {item.get('product_url')}\n"
+                    body += f"SKU:{item.get('fe_sku')}, \
+                        URL:{item.get('product_url')}\n"
             email = Email(email=EMAIL_FROM, password=EMAIL_PASSWORD)
             email.send(EMAIL_SUBJECT, body, EMAIL_TO)
 
